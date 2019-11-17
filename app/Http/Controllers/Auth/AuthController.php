@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Events\BlockAttempsUsers;
+use App\User;
 use Carbon\Carbon;
 use Symfony\Bridge\PsrHttpMessage\Factory\DiactorosFactory;
 use Illuminate\Http\Response;
@@ -20,6 +21,7 @@ class AuthController extends AccessTokenController
     //custom login method
     public function login(Request $request)
     {
+
         //check if user has reached the max number of login attempts
         if ($this->hasTooManyLoginAttempts($request))
         {
@@ -32,8 +34,15 @@ class AuthController extends AccessTokenController
         //verify user credentials
         $credentials = $request->only('email', 'password');
 
+        $checkStatus = User::where('email', $request->email)->first();
+
+        if ($checkStatus->status === false){
+            return \response()->json('La Cuenta esta bloqueada, solicite procedimiento de desbloqueo al administrador del sistema', 404);
+        }
+
         if (Auth::attempt($credentials))
         {
+
             //Authentication passed...
 
             //reset failed login attemps
