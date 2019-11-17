@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Events\BlockAttempsUsers;
+use App\Listeners\UserBlockListener;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -18,6 +20,10 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        BlockAttempsUsers::class => [
+            UserBlockListener::class,
+        ]
+
     ];
 
     /**

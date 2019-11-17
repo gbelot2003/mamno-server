@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Events\BlockAttempsUsers;
 use Carbon\Carbon;
 use Symfony\Bridge\PsrHttpMessage\Factory\DiactorosFactory;
 use Illuminate\Http\Response;
@@ -24,7 +25,7 @@ class AuthController extends AccessTokenController
         {
             $this->fireLockoutEvent($request);
             // aqui cerramos al usuario permanentemente
-
+            event(new BlockAttempsUsers($request));
             return "To many attempts...";
         }
 
