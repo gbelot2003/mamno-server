@@ -19,9 +19,13 @@ class RolesTableSeeder extends Seeder
         DB::table('roles')->delete();
 
         $roles = [
-            'administrador',
-            'Conserje',
-            'recepcionista',
+            'Productor',
+            'Comprador',
+            'Transportista',
+            'Promotor',
+            'Administrador',
+            'verificador', // agregado segun documento
+            'Gerente',
         ];
 
         $permissionsAdmin = [
@@ -33,7 +37,7 @@ class RolesTableSeeder extends Seeder
             Role::create(['name' => $roles]);
         }
 
-        $role = Role::findByName('administrador');
+        $role = Role::findByName('Administrador');
         $role->givePermissionTo($permissionsAdmin);
 
 
