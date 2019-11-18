@@ -63,7 +63,8 @@ class AuthController extends AccessTokenController
             'long' => ['string', 'nullable'],
         ]);
 
-        $request->password = Hash::make($request->password);
+        $repass = Hash::make($request->password);
+        $request['password'] = $repass;
         $request['status'] = false;
 
         $user = User::create($request->all());
