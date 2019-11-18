@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use \Laravel\Passport\Http\Controllers\AccessTokenController as AccessTokenController;
 
 class AuthController extends AccessTokenController
@@ -19,15 +20,15 @@ class AuthController extends AccessTokenController
     public function login(Request $request)
     {
 
+        //verificamos credenciales de usuario
+        $credentials = $request->only('email', 'password');
+
         //Si el usuarios a fallado varios intentos
         if ($this->hasTooManyLoginAttempts($request))
         {
             // aqui cerramos al usuario permanentemente
             event(new BlockAttempsUsers($request));
         }
-
-        //verificamos credenciales de usuario
-        $credentials = $request->only('email', 'password');
 
         // Esto no deberia estar aquì pero lo dejamos por conveniencia
         $checkStatus = $this->checkUserStatus($request);
@@ -45,6 +46,25 @@ class AuthController extends AccessTokenController
             return "Fallo el Login...";
         }
     }
+
+    public function register(Request $request)
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8'],
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'status' => false,
+        ]);
+
+        return response()->json($user, 200);
+    }
+
 
     /**
      * @param Request $request
