@@ -42,4 +42,20 @@ class User extends Authenticatable
         'status' => 'boolean'
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function municipio()
+    {
+        return $this->belongsTo(Municipios::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function departamento()
+    {
+        return $this->belongsTo(Departamentos::class);
+    }
+
 }
