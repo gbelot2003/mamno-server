@@ -16,23 +16,21 @@ class AuthController extends AccessTokenController
 
     protected $maxAttempts = 3; // Default is 5
 
-    //custom login method
     public function login(Request $request)
     {
 
-        //check if user has reached the max number of login attempts
+        //Si el usuarios a fallado varios intentos
         if ($this->hasTooManyLoginAttempts($request))
         {
-            $this->fireLockoutEvent($request);
             // aqui cerramos al usuario permanentemente
             event(new BlockAttempsUsers($request));
-            return "To many attempts...";
         }
 
-        //verify user credentials
+        //verificamos credenciales de usuario
         $credentials = $request->only('email', 'password');
 
-        $checkStatus = User::where('email', $request->email)->first();
+        // Esto no deberia estar aquì pero lo dejamos por conveniencia
+        $checkStatus = $this->checkUserStatus($request);
 
         if ($checkStatus->status === false){
             return \response()->json('La Cuenta esta bloqueada, solicite procedimiento de desbloqueo al administrador del sistema', 401);
@@ -41,7 +39,7 @@ class AuthController extends AccessTokenController
         if (Auth::attempt($credentials))
         {
 
-            //Authentication passed...
+            //Pasa la autenticaciòn...
 
             //reset failed login attemps
             $this->clearLoginAttempts($request);
@@ -66,7 +64,17 @@ class AuthController extends AccessTokenController
             //count user failed login attempts
             $this->incrementLoginAttempts($request);
 
-            return "Login failed...";
+            return "Fallo el Login...";
         }
+    }
+
+    /**
+     * @param Request $request
+     * @return mixed
+     */
+    private function checkUserStatus(Request $request)
+    {
+        $checkStatus = User::where('email', $request->email)->first();
+        return $checkStatus;
     }
 }
