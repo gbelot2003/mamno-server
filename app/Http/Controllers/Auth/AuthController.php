@@ -53,14 +53,22 @@ class AuthController extends AccessTokenController
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8'],
+            'role' => ['required', 'string'],
+            'telefono' => ['required', 'string'],
+            'departamento_id' => ['required', 'integer'],
+            'municipio_id' => ['required', 'integer'],
+            'calle' => ['required', 'string'],
+            'casa' => ['required', 'string'],
+            'lat' => ['string', 'nullable'],
+            'long' => ['string', 'nullable'],
         ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'status' => false,
-        ]);
+        $request->password = Hash::make($request->password);
+        $request['status'] = false;
+
+        $user = User::create($request->all());
+
+        $user->assignRole($request->role);
 
         return response()->json($user, 200);
     }
