@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Auth;
 use App\Events\BlockAttempsUsers;
 use App\User;
 use Carbon\Carbon;
-use Symfony\Bridge\PsrHttpMessage\Factory\DiactorosFactory;
-use Illuminate\Http\Response;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -37,7 +35,7 @@ class AuthController extends AccessTokenController
         $checkStatus = User::where('email', $request->email)->first();
 
         if ($checkStatus->status === false){
-            return \response()->json('La Cuenta esta bloqueada, solicite procedimiento de desbloqueo al administrador del sistema', 404);
+            return \response()->json('La Cuenta esta bloqueada, solicite procedimiento de desbloqueo al administrador del sistema', 401);
         }
 
         if (Auth::attempt($credentials))
