@@ -20,12 +20,17 @@ class RolesTableSeeder extends Seeder
 
         $roles = [
             'Productor',
+            'Productor Individual',
+            'Productor Grupal',
+            'Productor Representante Grupo',
             'Comprador',
             'Transportista',
             'Promotor',
             'Administrador',
+            'Administrador Sistema',
+            'Administrador Mantenimiento',
             'verificador', // agregado segun documento
-            'Gerente',
+            'Gerente General',
         ];
 
         $permissionsAdmin = [
