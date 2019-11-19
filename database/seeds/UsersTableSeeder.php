@@ -38,6 +38,6 @@ class UsersTableSeeder extends Seeder
         ));
 
         $user = \App\User::findOrFail(1);
-        $user->assignRole('Administrador');
+        $user->assignRole('Administrador_Sistema');
     }
 }
