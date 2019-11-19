@@ -19,14 +19,12 @@ class RolesTableSeeder extends Seeder
         DB::table('roles')->delete();
 
         $roles = [
-            'Productor',
             'Productor Individual',
             'Productor Grupal',
             'Productor Representante Grupo',
             'Comprador',
             'Transportista',
             'Promotor',
-            'Administrador',
             'Administrador Sistema',
             'Administrador Mantenimiento',
             'verificador', // agregado segun documento
@@ -42,7 +40,7 @@ class RolesTableSeeder extends Seeder
             Role::create(['name' => $roles]);
         }
 
-        $role = Role::findByName('Administrador');
+        $role = Role::findByName('Administrador Sistema');
         $role->givePermissionTo($permissionsAdmin);
 
 
