@@ -27,4 +27,4 @@ Route::middleware('auth:api')->get('/v1', function (){
    return response()->json(['nombre' => 'hola'], 200);
 });
 
-Route::resource('v1/users', 'UserController');
+Route::middleware('auth:api')->resource('v1/users', 'UserController');

@@ -8,13 +8,22 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     /**
+     * aqui implementamos la seguridad y roles
+     * UserController constructor.
+     */
+    public function __construct()
+    {
+
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $users = User::paginate(20);
+        $users = User::with('departamento', 'municipio', 'roles')->get();
         return response()->json($users, 200);
     }
 
