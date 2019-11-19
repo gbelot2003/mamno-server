@@ -52,7 +52,6 @@ class AuthController extends AccessTokenController
 
     public function register(UserRequest $request)
     {
-
         $register = new \App\Acme\UserRegistration($request);
         $user = $register->handler();
         $mail = new \App\Acme\RegistrationMailer($user);
