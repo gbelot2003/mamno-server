@@ -13,7 +13,7 @@ class MunicipiosController extends Controller
 
     public function index($dep)
     {
-        $muni = Municipios::where('departamento_id', $dep)->pluck('id', 'municipio');
+        $muni = Municipios::where('departamento_id', $dep)->select('id as value', 'municipio as viewValue')->get();
         return response()->json($muni, 200);
     }
 }
