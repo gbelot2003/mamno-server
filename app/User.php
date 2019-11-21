@@ -58,4 +58,12 @@ class User extends Authenticatable
         return $this->belongsTo(Departamentos::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function info()
+    {
+        return $this->hasOne(AdicionalInfo::class, 'user_id', 'id');
+    }
+
 }

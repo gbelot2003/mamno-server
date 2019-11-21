@@ -26,7 +26,6 @@ class UserRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8'],
             'role' => ['required', 'string'],
             'telefono' => ['required', 'string'],
             'departamento_id' => ['required', 'integer'],
@@ -35,6 +34,8 @@ class UserRequest extends FormRequest
             'casa' => ['required', 'string'],
             'lat' => ['string', 'nullable'],
             'long' => ['string', 'nullable'],
+            'identidad' => ['string', 'nullable'],
+            'rtn' => ['string', 'nullable'],
         ];
     }
 }
