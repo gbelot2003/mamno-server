@@ -13,7 +13,7 @@ class RolesController extends Controller
 
     public function index()
     {
-        $roles = Role::pluck('name', 'name');
+        $roles = Role::select('name as value', 'name as viewValue')->get();
         return response()->json($roles, 200);
     }
 }

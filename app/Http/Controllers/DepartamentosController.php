@@ -14,7 +14,7 @@ class DepartamentosController extends Controller
 
     public function index()
     {
-        $departamentos = Departamentos::pluck('id as value', 'departamento as viewValue');
+        $departamentos = Departamentos::select('id as value', 'departamento as viewValue')->get();
         return response()->json($departamentos, 200);
     }
 }
