@@ -36,6 +36,13 @@ class UserRequest extends FormRequest
             'long' => ['string', 'nullable'],
             'identidad' => ['string', 'nullable'],
             'rtn' => ['string', 'nullable'],
+            'rtn_image' => ['mimes:jpeg,bmp,png,jpg,gif', 'nullable'],
+            'grupo_id' => ['integer', 'nullable'],
+            'cuanta_image' => ['mimes:jpeg,bmp,png,jpg,gif', 'nullable'],
+            'descripcion_vehiculos' => ['string', 'nullable'],
+            'contrato' => ['string', 'nullable'],
+            'fautorizacion' => ['string', 'nullable'],
+            'fvencimiento' => ['string', 'nullable'],
         ];
     }
 }

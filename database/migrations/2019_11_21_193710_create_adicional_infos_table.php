@@ -15,7 +15,7 @@ class CreateAdicionalInfosTable extends Migration
     {
         Schema::create('adicional_infos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('identidad');
+            $table->string('identidad')->nullable();
             $table->string('rtn')->nullable();
             $table->string('rtn_image')->nullable();
             $table->integer('grupo_id')->nullable();
