@@ -20,7 +20,10 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'email', 'password', 'status',
         'telefono', 'departamento_id', 'municipio_id', 'calle',
-        'casa', 'lat', 'long'
+        'casa', 'lat', 'long',
+        'identidad', 'rtn', 'rtn_image', 'grupo_id',
+        'cuenta_image', 'descripcion_vehiculos', 'contrato', 'fvencimiento', 'fautorizacion',
+        'acuerdo'
     ];
 
     /**
@@ -59,11 +62,19 @@ class User extends Authenticatable
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function grupo()
+    {
+        return $this->belongsTo(Grupo::class, 'grupo_id', 'id');
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function info()
+   /* public function info()
     {
         return $this->hasOne(AdicionalInfo::class, 'user_id', 'id');
-    }
+    }*/
 
 }

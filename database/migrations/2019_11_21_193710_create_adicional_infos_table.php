@@ -19,9 +19,10 @@ class CreateAdicionalInfosTable extends Migration
             $table->string('rtn')->nullable();
             $table->string('rtn_image')->nullable();
             $table->integer('grupo_id')->nullable();
-            $table->string('cuanta_image')->nullable();
+            $table->string('cuenta_image')->nullable();
             $table->text('descripcion_vehiculos')->nullable();
             $table->string('contrato')->nullable();
+            $table->string('acuerdo')->nullable();
             $table->dateTime('fvencimiento')->nullable();
             $table->dateTime('fautorizacion')->nullable();
         });

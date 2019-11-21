@@ -59,6 +59,19 @@ class AuthController extends AccessTokenController
         return response()->json($user, 200);
     }
 
+    public function uploadImagesTareas(Request $request)
+    {
+        request()->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:150000',
+        ]);
+
+        $imageName = time() . '.' . request()->image->getClientOriginalExtension();
+
+        request()->image->move(public_path('images/registro/'), $imageName);
+
+        return \response()->json($imageName, 200);
+
+    }
 
     /**
      * @param Request $request

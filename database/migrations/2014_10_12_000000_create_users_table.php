@@ -28,6 +28,17 @@ class CreateUsersTable extends Migration
             $table->string('lat')->nullable();
             $table->string('long')->nullable();
 
+            $table->string('identidad')->nullable();
+            $table->string('rtn')->nullable();
+            $table->string('rtn_image')->nullable();
+            $table->integer('grupo_id')->nullable();
+            $table->string('cuenta_image')->nullable();
+            $table->text('descripcion_vehiculos')->nullable();
+            $table->string('contrato')->nullable();
+            $table->string('acuerdo')->nullable();
+            $table->dateTime('fvencimiento')->nullable();
+            $table->dateTime('fautorizacion')->nullable();
+
             $table->boolean('status');
             $table->rememberToken();
             $table->timestamps();

@@ -11,7 +11,7 @@ class AdicionalInfo extends Model
      * @var array .
      */
     protected $fillable = ['identidad', 'rtn', 'rtn_image', 'grupo_id', 'cuenta_image', 'descripcion_vehiculos',
-        'contrato', 'fvencimiento', 'fautorizacion'];
+        'contrato', 'fvencimiento', 'fautorizacion', 'acuerdo'];
 
     /**
      * @var bool
