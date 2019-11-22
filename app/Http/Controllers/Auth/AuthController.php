@@ -20,8 +20,15 @@ class AuthController extends AccessTokenController
 {
     use AuthenticatesUsers;
 
+    /**
+     * @var int
+     */
     protected $maxAttempts = 3; // Default is 5
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse|string
+     */
     public function login(Request $request)
     {
 
@@ -50,6 +57,10 @@ class AuthController extends AccessTokenController
         }
     }
 
+    /**
+     * @param UserRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function register(UserRequest $request)
     {
         $register = new \App\Acme\UserRegistration($request);
@@ -59,7 +70,11 @@ class AuthController extends AccessTokenController
         return response()->json($user, 200);
     }
 
-    public function uploadImagesTareas(Request $request)
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function uploadImagesRegister(Request $request)
     {
         request()->validate([
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:150000',
