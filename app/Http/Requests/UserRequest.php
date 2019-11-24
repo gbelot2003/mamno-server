@@ -34,15 +34,15 @@ class UserRequest extends FormRequest
             'casa' => ['required', 'string'],
             'lat' => ['string', 'nullable'],
             'long' => ['string', 'nullable'],
-            'identidad' => ['string', 'nullable'],
-            'rtn' => ['string', 'nullable'],
-            'rtn_image' => ['mimes:jpeg,bmp,png,jpg,gif', 'nullable'],
+            'identidad' => ['integer', 'nullable'],
+            'rtn' => ['integer', 'nullable'],
+            'rtn_image' => ['string', 'nullable'],
             'grupo_id' => ['integer', 'nullable'],
-            'cuanta_image' => ['mimes:jpeg,bmp,png,jpg,gif', 'nullable'],
+            'cuanta_image' => ['string', 'nullable'],
             'descripcion_vehiculos' => ['string', 'nullable'],
-            'contrato' => ['string', 'nullable'],
-            'fautorizacion' => ['string', 'nullable'],
-            'fvencimiento' => ['string', 'nullable'],
+            'contrato' => ['integer', 'nullable'],
+            'fautorizacion' => ['date', 'nullable'],
+            'fvencimiento' => ['date', 'nullable'],
         ];
     }
 }
