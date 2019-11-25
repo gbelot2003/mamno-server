@@ -35,20 +35,18 @@ class AuthController extends AccessTokenController
         //verificamos credenciales de usuario
         $credentials = $request->only('email', 'password');
         //Si el usuarios a fallado varios intentos
-        if ($this->hasTooManyLoginAttempts($request))
-        {
+        if ($this->hasTooManyLoginAttempts($request)) {
             // aqui cerramos al usuario permanentemente
             event(new BlockAttempsUsers($request));
         }
 
         // Esto no deberia estar aquì pero lo dejamos por conveniencia
         $checkStatus = User::where('email', $request->email)->first();
-        if ($checkStatus->status == false){
+        if ($checkStatus->status == false) {
             return \response()->json('La Cuenta esta bloqueada, solicite procedimiento de desbloqueo al administrador del sistema', 401);
         }
 
-        if (Auth::attempt($credentials))
-        {
+        if (Auth::attempt($credentials)) {
             return $this->authAttemps($request);
         } else {
             //Contador de las veces que intenta login sin exito
@@ -68,6 +66,18 @@ class AuthController extends AccessTokenController
         $mail = new \App\Acme\RegistrationMailer($user);
         $mail->handler();
         return response()->json($user, 200);
+    }
+
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function logout()
+    {
+        auth('api')->user()->tokens->each(function ($token, $key) {
+            $token->delete();
+        });
+
+        return response()->json('Logged out', 200);
     }
 
     /**

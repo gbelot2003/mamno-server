@@ -23,7 +23,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::with('departamento', 'municipio', 'roles')->get();
+        $users = User::with('departamento', 'municipio', 'roles')->paginate(20);
         return response()->json($users, 200);
     }
 
