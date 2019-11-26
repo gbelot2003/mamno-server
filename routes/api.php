@@ -35,3 +35,5 @@ Route::get('v1/departamentos', 'DepartamentosController@index');
 Route::get('v1/municipios/{dep}', 'MunicipiosController@index');
 Route::get('v1/roles', 'RolesController@index');
 Route::get('v1/grupos', 'GrupoController@index');
+
+Route::get('v1/configuraciones/nuevos', 'InitialConfigController@newUsers');
