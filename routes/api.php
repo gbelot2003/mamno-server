@@ -29,6 +29,7 @@ Route::middleware('auth:api')->get('/v1', function (){
 });
 
 Route::middleware('auth:api')->resource('v1/users', 'UserController');
+Route::middleware('auth:api')->post('v1/configuraciones/{id}', 'UserController@configuraciones');
 
 Route::get('v1/departamentos', 'DepartamentosController@index');
 Route::get('v1/municipios/{dep}', 'MunicipiosController@index');

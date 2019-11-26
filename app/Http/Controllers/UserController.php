@@ -66,4 +66,17 @@ class UserController extends Controller
     {
         //
     }
+
+    /**
+     * actualizacion de configuraciones
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function configuraciones(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $user->update($request->all());
+        return response()->json($user, 200);
+    }
 }
