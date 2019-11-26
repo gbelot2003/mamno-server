@@ -40,6 +40,7 @@ class CreateUsersTable extends Migration
             $table->dateTime('fautorizacion')->nullable();
 
             $table->boolean('status');
+            $table->boolean('nuevo', 0);
             $table->rememberToken();
             $table->timestamps();
         });

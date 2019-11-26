@@ -24,7 +24,7 @@ class User extends Authenticatable implements Auditable
         'casa', 'lat', 'long',
         'identidad', 'rtn', 'rtn_image', 'grupo_id',
         'cuenta_image', 'descripcion_vehiculos', 'contrato', 'fvencimiento', 'fautorizacion',
-        'acuerdo'
+        'acuerdo', 'nuevo'
     ];
 
     /**
@@ -33,7 +33,7 @@ class User extends Authenticatable implements Auditable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token'. 'status'
+        'password', 'remember_token'. 'status', 'nuevo'
     ];
 
     /**
@@ -43,7 +43,8 @@ class User extends Authenticatable implements Auditable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'status' => 'boolean'
+        'status' => 'boolean',
+        'nuevo' => 'boolean'
     ];
 
     /**
