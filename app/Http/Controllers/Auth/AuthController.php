@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use \Laravel\Passport\Http\Controllers\AccessTokenController as AccessTokenController;
+use OwenIt\Auditing\Models\Audit;
 
 class AuthController extends AccessTokenController
 {
@@ -78,6 +79,22 @@ class AuthController extends AccessTokenController
             $token->delete();
         });
 
+        $data = [
+            'user_type' => "App\User",
+            'auditable_id' => auth()->user()->id,
+            'auditable_type' => "Logout",
+            'event'      => "Logout",
+            'url'        => request()->fullUrl(),
+            'ip_address' => request()->getClientIp(),
+            'user_agent' => request()->userAgent(),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+            'user_id'    => auth()->user()->id,
+        ];
+
+        //create audit trail data
+        $details = Audit::create($data);
+
         return response()->json('Logged out', 200);
     }
 
@@ -127,6 +144,22 @@ class AuthController extends AccessTokenController
             $token->expires_at = Carbon::now()->addWeeks(1);
 
         $token->save();
+
+        $data = [
+            'user_type' => "App\User",
+            'auditable_id' => auth()->user()->id,
+            'auditable_type' => "Logged In",
+            'event'      => "Logged In",
+            'url'        => request()->fullUrl(),
+            'ip_address' => request()->getClientIp(),
+            'user_agent' => request()->userAgent(),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+            'user_id'    => auth()->user()->id,
+        ];
+
+        //create audit trail data
+        $details = Audit::create($data);
 
         return response()->json([
             'access_token' => $tokenResult->accessToken,
