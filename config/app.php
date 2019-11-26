@@ -177,6 +177,7 @@ return [
         Orangehill\Iseed\IseedServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
         Barryvdh\Cors\ServiceProvider::class,
+        OwenIt\Auditing\AuditingServiceProvider::class,
     ],
 
     /*
