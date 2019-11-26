@@ -51,6 +51,7 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         $user->update($request->all());
+        $user->syncRoles([$request->get('role')]);
         return response()->json($user, 200);
 
     }

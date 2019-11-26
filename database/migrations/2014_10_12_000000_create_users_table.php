@@ -28,7 +28,7 @@ class CreateUsersTable extends Migration
             $table->string('lat')->nullable();
             $table->string('long')->nullable();
 
-            $table->integer('identidad')->nullable();
+            $table->string('identidad')->nullable();
             $table->string('rtn')->nullable();
             $table->string('rtn_image')->nullable();
             $table->smallInteger('grupo_id')->nullable();

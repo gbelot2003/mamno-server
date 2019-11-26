@@ -70,6 +70,7 @@ class User extends Authenticatable implements Auditable
         return $this->belongsTo(Grupo::class, 'grupo_id', 'id');
     }
 
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */

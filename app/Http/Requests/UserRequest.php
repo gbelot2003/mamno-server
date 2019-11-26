@@ -25,7 +25,7 @@ class UserRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,'. $this->id .',id'],
             'role' => ['required', 'string'],
             'telefono' => ['required', 'string'],
             'departamento_id' => ['required', 'integer'],
@@ -34,13 +34,14 @@ class UserRequest extends FormRequest
             'casa' => ['required', 'string'],
             'lat' => ['string', 'nullable'],
             'long' => ['string', 'nullable'],
-            'identidad' => ['integer', 'nullable'],
-            'rtn' => ['integer', 'nullable'],
+            'identidad' => ['integer','regex:/[0-9]+/', 'nullable'],
+            'rtn' => ['integer', 'regex:/[0-9]+/', 'nullable'],
             'rtn_image' => ['string', 'nullable'],
             'grupo_id' => ['integer', 'nullable'],
             'cuanta_image' => ['string', 'nullable'],
             'descripcion_vehiculos' => ['string', 'nullable'],
             'contrato' => ['integer', 'nullable'],
+            'acuerdo' => ['integer', 'nullable'],
             'fautorizacion' => ['date', 'nullable'],
             'fvencimiento' => ['date', 'nullable'],
         ];
