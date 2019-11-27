@@ -29,8 +29,8 @@ class InitialConfigController extends Controller
     public function changeStatus($id)
     {
         $user = User::findOrFail($id);
-        $user->nuevo = false;
+        $user->nuevo = 0;
         $user->save();
-        return true;
+        return 'true';
     }
 }

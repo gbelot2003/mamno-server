@@ -37,3 +37,4 @@ Route::get('v1/roles', 'RolesController@index');
 Route::get('v1/grupos', 'GrupoController@index');
 
 Route::get('v1/configuraciones/nuevos', 'InitialConfigController@newUsers');
+Route::get('v1/configuraciones/changeStatus/{id}', 'InitialConfigController@changeStatus');
