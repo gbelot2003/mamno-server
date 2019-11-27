@@ -21,4 +21,16 @@ class InitialConfigController extends Controller
         $users = User::where('nuevo', true)->select('name', 'email', 'created_at')->get();
         return response()->json($users, 200);
     }
+
+    /**
+     * @param $id
+     * @return bool
+     */
+    public function changeStatus($id)
+    {
+        $user = User::findOrFail($id);
+        $user->nuevo = false;
+        $user->save();
+        return true;
+    }
 }

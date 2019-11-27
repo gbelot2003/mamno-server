@@ -26,6 +26,7 @@ class UserRegistration
         $repass = Hash::make($this->request->password);
         $this->request['password'] = $repass;
         $this->request['status'] = false;
+        $this->request['nuevo'] = true;
         $user = User::create($this->request->all());
         $user->assignRole($this->request->role);
         return $user;
