@@ -18,10 +18,6 @@ Route::post('v1/login', 'Auth\AuthController@login');
 Route::post('v1/register', 'Auth\AuthController@register');
 Route::middleware('auth:api')->get('v1/logout', 'Auth\AuthController@logout');
 
-Route::middleware('auth:api')->get('/v1', function (){
-   return response()->json(['nombre' => 'hola'], 200);
-});
-
 Route::middleware('auth:api')->get('/v1/user', function (Request $request) {
     $id = auth('api')->user()->getAuthIdentifier();
     $user = \App\User::where('id', $id)->with('roles')->first();
@@ -35,8 +31,6 @@ Route::get('v1/grupos', 'GrupoController@index');
 
 Route::middleware('auth:api')->resource('v1/users', 'UserController');
 Route::middleware('auth:api')->post('v1/configuraciones/{id}', 'UserController@configuraciones');
-
-
 
 Route::middleware('auth:api')->get('v1/configuraciones/nuevos', 'InitialConfigController@newUsers');
 Route::middleware('auth:api')->get('v1/configuraciones/changeStatus/{id}', 'InitialConfigController@changeStatus');
