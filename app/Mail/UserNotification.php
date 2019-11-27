@@ -32,6 +32,7 @@ class UserNotification extends Mailable
     {
         return $this
             ->from(env('FROM_EMAIL'))
+            ->subject("Registro en el Sistema MANNO")
             ->view('mails.userNotification');
     }
 }

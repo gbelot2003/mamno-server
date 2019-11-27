@@ -36,6 +36,7 @@ class UserRegistrationAdmin extends Mailable
     {
         return $this
             ->from(env('FROM_EMAIL'))
+            ->subject("Registro de ". $this->user->name ." en el Sistema MANNO")
             ->view('mails.RegisterUserAdmin');
     }
 }
