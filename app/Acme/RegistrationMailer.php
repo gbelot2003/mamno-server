@@ -4,6 +4,7 @@
 namespace App\Acme;
 
 
+use App\Mail\UserNotification;
 use App\Mail\UserRegistrationAdmin;
 use App\User;
 use Illuminate\Support\Facades\Mail;
@@ -26,8 +27,11 @@ class RegistrationMailer
      */
     public function handler()
     {
-        $to = explode(',', env('ADMIN_EMAILS'));
-        Mail::to($to)
+        Mail::to($this->user->email)
+            ->send(new UserNotification($this->user));
+
+        Mail::to(explode(',', env('ADMIN_EMAILS')))
             ->send(new UserRegistrationAdmin($this->user));
+
     }
 }
