@@ -12,12 +12,12 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
 
         \DB::table('users')->delete();
-        
+
         \DB::table('users')->insert(array (
-            0 => 
+            0 =>
             array (
                 'id' => '1',
                 'name' => 'Gerardo A Belot',
@@ -42,12 +42,13 @@ class UsersTableSeeder extends Seeder
                 'fvencimiento' => '2019-12-31T06:00:00.000Z',
                 'fautorizacion' => NULL,
                 'status' => '1',
+                'passwordAttempt' => '0',
                 'nuevo' => '0',
                 'remember_token' => '4sUywDcAp2SZ1nReBur1A0DS4OPOsXahj6ce1JIjatLsfMKAe9gRjh37wH2H',
                 'created_at' => '2019-11-17 07:13:20',
                 'updated_at' => '2019-11-27 14:03:42',
             ),
-            1 => 
+            1 =>
             array (
                 'id' => '6',
                 'name' => 'Fermin Ramos',
@@ -72,12 +73,13 @@ class UsersTableSeeder extends Seeder
                 'fvencimiento' => NULL,
                 'fautorizacion' => NULL,
                 'status' => '1',
+                'passwordAttempt' => '0',
                 'nuevo' => '0',
                 'remember_token' => NULL,
                 'created_at' => '2019-11-26 16:04:26',
                 'updated_at' => '2019-11-27 14:28:17',
             ),
-            2 => 
+            2 =>
             array (
                 'id' => '7',
                 'name' => 'Julio Ramirez',
@@ -103,11 +105,13 @@ class UsersTableSeeder extends Seeder
                 'fautorizacion' => NULL,
                 'status' => '1',
                 'nuevo' => '0',
+                'passwordAttempt' => '0',
+
                 'remember_token' => NULL,
                 'created_at' => '2019-11-26 17:44:11',
                 'updated_at' => '2019-11-26 17:44:11',
             ),
-            3 => 
+            3 =>
             array (
                 'id' => '8',
                 'name' => 'Ernesto Santos Maradiaga',
@@ -133,11 +137,13 @@ class UsersTableSeeder extends Seeder
                 'fautorizacion' => NULL,
                 'status' => '1',
                 'nuevo' => '0',
+                'passwordAttempt' => '0',
+
                 'remember_token' => NULL,
                 'created_at' => '2019-11-26 17:53:29',
                 'updated_at' => '2019-11-26 17:53:29',
             ),
-            4 => 
+            4 =>
             array (
                 'id' => '9',
                 'name' => 'Efrain Suazo Albarenga',
@@ -163,11 +169,13 @@ class UsersTableSeeder extends Seeder
                 'fautorizacion' => NULL,
                 'status' => '0',
                 'nuevo' => '1',
+                'passwordAttempt' => '0',
+
                 'remember_token' => NULL,
                 'created_at' => '2019-11-26 18:03:50',
                 'updated_at' => '2019-11-26 18:03:50',
             ),
-            5 => 
+            5 =>
             array (
                 'id' => '10',
                 'name' => 'Luis Arnaldo Escobar',
@@ -193,11 +201,13 @@ class UsersTableSeeder extends Seeder
                 'fautorizacion' => NULL,
                 'status' => '0',
                 'nuevo' => '0',
+                'passwordAttempt' => '0',
+
                 'remember_token' => NULL,
                 'created_at' => '2019-11-26 18:12:16',
                 'updated_at' => '2019-11-27 00:34:55',
             ),
-            6 => 
+            6 =>
             array (
                 'id' => '11',
                 'name' => 'Efrain Maldonado Maradiaga',
@@ -223,11 +233,13 @@ class UsersTableSeeder extends Seeder
                 'fautorizacion' => NULL,
                 'status' => '0',
                 'nuevo' => '0',
+                'passwordAttempt' => '0',
+
                 'remember_token' => NULL,
                 'created_at' => '2019-11-26 18:34:47',
                 'updated_at' => '2019-11-27 00:25:43',
             ),
-            7 => 
+            7 =>
             array (
                 'id' => '12',
                 'name' => 'Fernando Mena',
@@ -253,11 +265,13 @@ class UsersTableSeeder extends Seeder
                 'fautorizacion' => NULL,
                 'status' => '0',
                 'nuevo' => '0',
+                'passwordAttempt' => '0',
+
                 'remember_token' => NULL,
                 'created_at' => '2019-11-26 18:36:15',
                 'updated_at' => '2019-11-27 00:23:29',
             ),
-            8 => 
+            8 =>
             array (
                 'id' => '13',
                 'name' => 'Angel Maradiaga',
@@ -283,11 +297,13 @@ class UsersTableSeeder extends Seeder
                 'fautorizacion' => NULL,
                 'status' => '0',
                 'nuevo' => '0',
+                'passwordAttempt' => '0',
+
                 'remember_token' => NULL,
                 'created_at' => '2019-11-27 02:31:39',
                 'updated_at' => '2019-11-27 02:34:38',
             ),
-            9 => 
+            9 =>
             array (
                 'id' => '14',
                 'name' => 'Rodrigo Enrique',
@@ -313,11 +329,13 @@ class UsersTableSeeder extends Seeder
                 'fautorizacion' => NULL,
                 'status' => '0',
                 'nuevo' => '1',
+                'passwordAttempt' => '0',
+
                 'remember_token' => NULL,
                 'created_at' => '2019-11-27 04:20:20',
                 'updated_at' => '2019-11-27 04:20:20',
             ),
-            10 => 
+            10 =>
             array (
                 'id' => '15',
                 'name' => 'Harry Maradiaga',
@@ -343,11 +361,13 @@ class UsersTableSeeder extends Seeder
                 'fautorizacion' => NULL,
                 'status' => '0',
                 'nuevo' => '1',
+                'passwordAttempt' => '0',
+
                 'remember_token' => NULL,
                 'created_at' => '2019-11-27 04:23:47',
                 'updated_at' => '2019-11-27 04:23:47',
             ),
-            11 => 
+            11 =>
             array (
                 'id' => '16',
                 'name' => 'Harry Mexa',
@@ -373,11 +393,13 @@ class UsersTableSeeder extends Seeder
                 'fautorizacion' => NULL,
                 'status' => '0',
                 'nuevo' => '1',
+                'passwordAttempt' => '0',
+
                 'remember_token' => NULL,
                 'created_at' => '2019-11-27 04:25:18',
                 'updated_at' => '2019-11-27 04:25:18',
             ),
-            12 => 
+            12 =>
             array (
                 'id' => '17',
                 'name' => 'Harry Mexas',
@@ -403,11 +425,13 @@ class UsersTableSeeder extends Seeder
                 'fautorizacion' => NULL,
                 'status' => '0',
                 'nuevo' => '1',
+                'passwordAttempt' => '0',
+
                 'remember_token' => NULL,
                 'created_at' => '2019-11-27 04:28:07',
                 'updated_at' => '2019-11-27 04:28:07',
             ),
-            13 => 
+            13 =>
             array (
                 'id' => '18',
                 'name' => 'Luis Maldonado',
@@ -433,11 +457,13 @@ class UsersTableSeeder extends Seeder
                 'fautorizacion' => NULL,
                 'status' => '0',
                 'nuevo' => '1',
+                'passwordAttempt' => '0',
+
                 'remember_token' => NULL,
                 'created_at' => '2019-11-27 04:30:20',
                 'updated_at' => '2019-11-27 04:30:20',
             ),
-            14 => 
+            14 =>
             array (
                 'id' => '19',
                 'name' => 'Luis Mendieta',
@@ -463,11 +489,13 @@ class UsersTableSeeder extends Seeder
                 'fautorizacion' => NULL,
                 'status' => '0',
                 'nuevo' => '1',
+                'passwordAttempt' => '0',
+
                 'remember_token' => NULL,
                 'created_at' => '2019-11-27 04:31:36',
                 'updated_at' => '2019-11-27 04:31:36',
             ),
-            15 => 
+            15 =>
             array (
                 'id' => '20',
                 'name' => 'Alberto Fuentes',
@@ -493,12 +521,14 @@ class UsersTableSeeder extends Seeder
                 'fautorizacion' => NULL,
                 'status' => '0',
                 'nuevo' => '1',
+                'passwordAttempt' => '0',
+
                 'remember_token' => NULL,
                 'created_at' => '2019-11-27 04:39:01',
                 'updated_at' => '2019-11-27 04:39:01',
             ),
         ));
-        
-        
+
+
     }
 }
