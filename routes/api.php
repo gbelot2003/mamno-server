@@ -36,3 +36,6 @@ Route::middleware('auth:api')->get('v1/configuraciones/nuevos', 'InitialConfigCo
 Route::middleware('auth:api')->get('v1/configuraciones/changeStatus/{id}', 'InitialConfigController@changeStatus');
 Route::middleware('auth:api')->get('v1/configuraciones/attempt/{id}', 'InitialConfigController@attempt');
 Route::middleware('auth:api')->post('v1/configuraciones/password-confirmation/{id}', 'InitialConfigController@sePassword');
+Route::middleware('auth:api')->get('v1/configuraciones/password-reset/{id}', 'InitialConfigController@resetPassword');
+
+Route::middleware('auth:api')->get('v1/configuraciones/cancel-access/{id}', 'InitialConfigController@cancelAccess');

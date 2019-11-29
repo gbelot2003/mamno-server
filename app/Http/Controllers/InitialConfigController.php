@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\InformacionLogin;
+use App\Mail\ResetedPassword;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -81,12 +82,12 @@ class InitialConfigController extends Controller
     }
 
     /**
+     * @param Request $request
      * @param $id
      * configurar el nuevo password del nuevo usuario
      * @return \Illuminate\Http\JsonResponse
      *
      * v1/configuraciones/password-confirmation/{id}
-     *
      */
     public function sePassword(Request $request, $id)
     {
@@ -103,6 +104,47 @@ class InitialConfigController extends Controller
         $user->passwordAttempt = false;
 
         $user->save();
+
+        return response()->json($user, 200);
+    }
+
+    /**
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     *
+     * v1/configuraciones/cancel-access/{id}
+     */
+    public function cancelAccess($id)
+    {
+        /** obtener usuario y password */
+        $user = User::findOrFail($id);
+        $user->status = false;
+        $user->save();
+
+        return response()->json($user, 200);
+    }
+
+    /**
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     *
+     * v1/configuraciones/password-reset/{id}
+     */
+    public function resetPassword($id)
+    {
+        /** obtener usuario y password */
+        $user = User::findOrFail($id);
+
+        /** generar un nuevo password aleatorio */
+        $password_string = str_random(40);
+        $hashed_random_password = Hash::make($password_string);
+        /** Guardamos el password */
+        $user->password = $hashed_random_password;
+        $user->passwordAttempt = true;
+        $user->save();
+
+        Mail::to($user->email)
+            ->send(new ResetedPassword($user, $password_string));
 
         return response()->json($user, 200);
     }
