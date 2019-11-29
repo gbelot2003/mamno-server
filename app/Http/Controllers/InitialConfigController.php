@@ -14,6 +14,7 @@ class InitialConfigController extends Controller
 
     public function __construct()
     {
+        $this->middleware(['role:Administrador_Sistema'])->except(['attempt', 'sePassword']);
     }
 
     /**
@@ -24,7 +25,21 @@ class InitialConfigController extends Controller
      */
     public function newUsers()
     {
-        $users = User::where('nuevo', true)->select('name', 'email', 'created_at')->get();
+        $nuevos = User::where('nuevo', true)->select('name', 'email', 'created_at')->get();
+
+        $user_mail = User::where('passwordAttempt', true)->select('name', 'email', 'created_at')->get();
+
+        $active = User::where('status', true)->where('passwordAttempt', false)->get();
+
+        $deactive = User::where('status', true)->where('status', false)->where('nuevo', false)->get();
+
+        $users = array(
+            'nuevos' => $nuevos,
+            'espera' => $user_mail,
+            'activos' => $active,
+                'desactivos' => $deactive
+        );
+
         return response()->json($users, 200);
     }
 
@@ -148,4 +163,6 @@ class InitialConfigController extends Controller
 
         return response()->json($user, 200);
     }
+
+
 }
