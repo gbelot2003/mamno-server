@@ -24,7 +24,7 @@ class User extends Authenticatable implements Auditable
         'casa', 'lat', 'long',
         'identidad', 'rtn', 'rtn_image', 'grupo_id',
         'cuenta_image', 'descripcion_vehiculos', 'contrato', 'fvencimiento', 'fautorizacion',
-        'acuerdo', 'nuevo', 'passwordAttempt'
+        'acuerdo', 'nuevo', 'passwordAttempt',
     ];
 
     /**
@@ -42,8 +42,6 @@ class User extends Authenticatable implements Auditable
      * @var array
      */
     protected $casts = [
-        'fvencimiento' => 'datetime',
-        'fautorizacion' => 'datetime',
         'email_verified_at' => 'datetime',
         'status' => 'boolean',
         'nuevo' => 'boolean',

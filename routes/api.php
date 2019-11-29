@@ -34,3 +34,5 @@ Route::middleware('auth:api')->post('v1/configuraciones/{id}', 'UserController@c
 
 Route::middleware('auth:api')->get('v1/configuraciones/nuevos', 'InitialConfigController@newUsers');
 Route::middleware('auth:api')->get('v1/configuraciones/changeStatus/{id}', 'InitialConfigController@changeStatus');
+
+Route::middleware('auth:api')->get('v1/configuraciones/attempt/{id}', 'InitialConfigController@attempt');
