@@ -15,7 +15,7 @@ class UserController extends Controller
     public function __construct()
     {
         // Solo usuarios con rol pueden ingresar a este endpoint
-        $this->middleware(['role:Administrador_Sistema']);
+        $this->middleware(['role:Administrador_Sistema'])->except(['configuraciones']);
     }
 
     /**
