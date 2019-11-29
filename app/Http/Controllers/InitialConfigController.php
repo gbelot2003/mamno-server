@@ -79,4 +79,31 @@ class InitialConfigController extends Controller
 
         return response()->json($user, 200);
     }
+
+    /**
+     * @param $id
+     * configurar el nuevo password del nuevo usuario
+     * @return \Illuminate\Http\JsonResponse
+     *
+     * v1/configuraciones/password-confirmation/{id}
+     *
+     */
+    public function sePassword(Request $request, $id)
+    {
+        /** obtener usuario y password */
+        $user = User::findOrFail($id);
+
+        /** Hashamos el nuevo passoword */
+        $hashed_random_password = Hash::make($request->get('password'));
+
+        /** Guardamos el password */
+        $user->password = $hashed_random_password;
+
+        /** Cambiamos el estado de password */
+        $user->passwordAttempt = false;
+
+        $user->save();
+
+        return response()->json($user, 200);
+    }
 }
