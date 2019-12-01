@@ -129,6 +129,7 @@ class InitialConfigController extends Controller
             'password' => $request->get('password'),
         ];
 
+
         $rules = [
             'password' => [
                 'required',
