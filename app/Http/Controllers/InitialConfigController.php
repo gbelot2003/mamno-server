@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use App\Configuration;
 
 class InitialConfigController extends Controller
 {
@@ -106,6 +107,47 @@ class InitialConfigController extends Controller
      */
     public function sePassword(Request $request, $id)
     {
+        $minimo = Configuration::find(5)->value;
+
+        if (Configuration::find(1)->display == true){
+            $mayusculas = Configuration::find(1)->value;
+        }
+
+        if (Configuration::find(1)->display == true){
+            $minusculas = Configuration::find(2)->value;
+        }
+
+        if (Configuration::find(1)->display == true){
+            $digitos = Configuration::find(3)->value;
+        }
+
+        if (Configuration::find(1)->display == true){
+            $especiales = Configuration::find(4)->value;
+        }
+
+        $inputs = [
+            'password' => $request->get('password'),
+        ];
+
+        $rules = [
+            'password' => [
+                'required',
+                'string',
+                "min:$minimo",
+                $mayusculas,
+                $minusculas,
+                $digitos,
+                $especiales,
+            ],
+        ];
+
+
+        $validation = \Validator::make( $inputs, $rules );
+
+        if ( $validation->fails() ) {
+            print_r( $validation->errors()->all() );
+        }
+
         /** obtener usuario y password */
         $user = User::findOrFail($id);
 

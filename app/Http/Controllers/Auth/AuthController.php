@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Acme\RegistrationMailer;
+use App\Configuration;
 use App\Events\BlockAttempsUsers;
 use App\Http\Requests\UserRequest;
 use App\Listeners\UserRegistration;
@@ -15,6 +16,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use \Laravel\Passport\Http\Controllers\AccessTokenController as AccessTokenController;
+use Laravel\Passport\TokenRepository;
+use Lcobucci\JWT\Parser as JwtParser;
+use League\OAuth2\Server\AuthorizationServer;
 use OwenIt\Auditing\Models\Audit;
 
 class AuthController extends AccessTokenController
@@ -24,7 +28,21 @@ class AuthController extends AccessTokenController
     /**
      * @var int
      */
-    protected $maxAttempts = 3; // Default is 5
+    private $maxAttempts; // Default is 5
+
+
+    public function __construct()
+    {
+        $this->setMaxAttempt(Configuration::find(6)->value);
+    }
+
+    /**
+     * @param $num
+     */
+    private function setMaxAttempt($num)
+    {
+        $this->maxAttempts = $num;
+    }
 
     /**
      * @param Request $request
@@ -32,7 +50,6 @@ class AuthController extends AccessTokenController
      */
     public function login(Request $request)
     {
-
         //verificamos credenciales de usuario
         $credentials = $request->only('email', 'password');
         //Si el usuarios a fallado varios intentos
