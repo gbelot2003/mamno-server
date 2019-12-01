@@ -107,21 +107,25 @@ class InitialConfigController extends Controller
      */
     public function sePassword(Request $request, $id)
     {
-        $minimo = Configuration::find(5)->value;
+        if (Configuration::find(5)->display == true){
+            $minimo = Configuration::find(5)->value;
+        } else {
+            $minimo = 5;
+        }
 
         if (Configuration::find(1)->display == true){
             $mayusculas = Configuration::find(1)->value;
         }
 
-        if (Configuration::find(1)->display == true){
+        if (Configuration::find(2)->display == true){
             $minusculas = Configuration::find(2)->value;
         }
 
-        if (Configuration::find(1)->display == true){
+        if (Configuration::find(3)->display == true){
             $digitos = Configuration::find(3)->value;
         }
 
-        if (Configuration::find(1)->display == true){
+        if (Configuration::find(4)->display == true){
             $especiales = Configuration::find(4)->value;
         }
 
