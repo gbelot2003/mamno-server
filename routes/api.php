@@ -39,3 +39,5 @@ Route::middleware('auth:api')->post('v1/configuraciones/password-confirmation/{i
 Route::middleware('auth:api')->get('v1/configuraciones/password-reset/{id}', 'InitialConfigController@resetPassword');
 
 Route::middleware('auth:api')->get('v1/configuraciones/cancel-access/{id}', 'InitialConfigController@cancelAccess');
+
+Route::middleware('auth:api')->get('v1/auditoria', 'AuditController@index');
