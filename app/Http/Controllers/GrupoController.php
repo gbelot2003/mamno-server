@@ -29,27 +29,23 @@ class GrupoController extends Controller
 
     public function show($id)
     {
-
+        $grupo = Grupo::findOrFail($id);
+        return response()->json($grupo, 200);
     }
 
 
     public function store(Request $request)
     {
-
+        $grupo = Grupo::create($request->all());
+        return response()->json($grupo, 200);
     }
 
 
     public function update(Request $request, $id)
     {
-
+        $grupo = Grupo::findOrFail($id);
+        $grupo->update($request->all());
+        return response()->json($grupo, 200);
     }
-
-
-    public function destroy($id)
-    {
-
-    }
-
-
 
 }
