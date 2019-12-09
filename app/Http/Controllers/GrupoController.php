@@ -22,25 +22,46 @@ class GrupoController extends Controller
      */
     public function index()
     {
-        $grupos = Grupo::select('id as value', 'name as viewValue')->get();
+        $grupos = Grupo::select('id as value', 'name as viewValue')
+            ->orderBy('id', 'DESC')->get();
         return response()->json($grupos, 200);
     }
 
-
+    /**
+     * show function
+     *
+     * @param [type] $id
+     * @return void
+     */
     public function show($id)
     {
         $grupo = Grupo::findOrFail($id);
         return response()->json($grupo, 200);
     }
 
-
+    /**
+     * store function
+     *
+     * @param Request $request
+     * @return void
+     *
+     * @post api/v1/grupos
+     */
     public function store(Request $request)
     {
         $grupo = Grupo::create($request->all());
         return response()->json($grupo, 200);
     }
 
-
+    /**
+     * update function
+     *
+     * @param Request $request
+     * @param [type] $id
+     * @return void
+     *
+     * @post api/v1/grupos/{id}
+     */
     public function update(Request $request, $id)
     {
         $grupo = Grupo::findOrFail($id);
