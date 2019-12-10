@@ -2,16 +2,18 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
+use OwenIt\Auditing\Contracts\Auditable;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use OwenIt\Auditing\Contracts\Auditable;
-use Spatie\Permission\Traits\HasRoles;
+
 
 class User extends Authenticatable implements Auditable
 {
-    use Notifiable, HasApiTokens, hasRoles, \OwenIt\Auditing\Auditable;
+    use Notifiable, HasApiTokens, hasRoles, \OwenIt\Auditing\Auditable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.

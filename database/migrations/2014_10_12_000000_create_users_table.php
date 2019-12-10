@@ -43,6 +43,7 @@ class CreateUsersTable extends Migration
             $table->boolean('nuevo', 0);
             $table->boolean('passwordAttempt', 0);
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

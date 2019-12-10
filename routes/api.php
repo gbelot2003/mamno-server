@@ -29,7 +29,7 @@ Route::get('v1/municipios/{dep}', 'MunicipiosController@index');
 Route::get('v1/roles', 'RolesController@index');
 Route::get('v1/grupos', 'GrupoController@index');
 
-Route::middleware('auth:api')->resource('v1/users', 'UserController');
+Route::middleware('auth:api')->resource('v1/users', 'UserController')->only(['index', 'show', 'update', 'destroy']);
 Route::middleware('auth:api')->post('v1/configuraciones/{id}', 'UserController@configuraciones');
 
 Route::middleware('auth:api')->get('v1/configuraciones/nuevos', 'InitialConfigController@newUsers');
