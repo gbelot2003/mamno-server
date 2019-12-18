@@ -15,9 +15,9 @@ class CreateProducerClassesTable extends Migration
     {
         Schema::create('producer_classes', function (Blueprint $table) {
             $table->bigIncrements('productClassId');
-            $table->string('productClassId');
             $table->string('productClassImage');
             $table->boolean('productClassStatus')->default(true); // Cambie esto a bool
+            $table->softDeletes();
             $table->timestamps();
         });
     }
