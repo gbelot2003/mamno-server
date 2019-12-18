@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class AdicionalInfo extends Model
+class AdicionalInfo extends Model implements Auditable
 {
+
+    use \OwenIt\Auditing\Auditable;
 
     /**
      * @var array .

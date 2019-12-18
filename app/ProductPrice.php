@@ -8,10 +8,12 @@ use App\ProductQuality;
 use App\Transformers\ProductPriceTransformer;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class ProductPrice extends Model
+class ProductPrice extends Model implements Auditable
 {
-  use SoftDeletes;
+  use SoftDeletes, \OwenIt\Auditing\Auditable;
+
   public $transformer = ProductPriceTransformer::class;
   
   protected $primaryKey='productPriceId';

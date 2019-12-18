@@ -4,10 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class ConversionMassMeasurement extends Model
+class ConversionMassMeasurement extends Model implements Auditable
 {
-  use SoftDeletes;
+  use SoftDeletes, \OwenIt\Auditing\Auditable;
   
   protected $primaryKey='conversionId';
   protected $dates = ['deleted_at'];

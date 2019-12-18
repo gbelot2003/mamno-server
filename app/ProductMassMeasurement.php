@@ -5,10 +5,11 @@ namespace App;
 use App\ProductPrice;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class ProductMassMeasurement extends Model
+class ProductMassMeasurement extends Model implements Auditable
 {
-  use SoftDeletes;
+  use SoftDeletes, \OwenIt\Auditing\Auditable;
   
   protected $primaryKey='productMassMeasurementId';
   protected $dates = ['deleted_at'];

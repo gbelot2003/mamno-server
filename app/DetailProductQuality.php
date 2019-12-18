@@ -6,10 +6,12 @@ use App\ProductPrice;
 use App\ProductQuality;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class DetailProductQuality extends Model
+class DetailProductQuality extends Model implements Auditable
 {
-  use SoftDeletes;
+  use SoftDeletes, \OwenIt\Auditing\Auditable;
+
   
   protected $primaryKey='detailproductQualityId';
   protected $dates = ['deleted_at'];

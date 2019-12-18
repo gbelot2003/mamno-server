@@ -6,10 +6,12 @@ use App\ProductType;
 use App\Transformers\ProductClassTransformer;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class ProductClass extends Model
+class ProductClass extends Model implements Auditable
 {
-  use SoftDeletes;
+  use SoftDeletes, \OwenIt\Auditing\Auditable;
+
   public $transformer = ProductClassTransformer::class;
   
   protected $primaryKey='productClassId';
