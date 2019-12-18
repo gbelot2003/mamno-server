@@ -14,7 +14,16 @@ class CreateInvoicePaymentsTable extends Migration
     public function up()
     {
         Schema::create('invoice_payments', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('invoicePaymentsId');
+            $table->bigInteger('invoiceID');
+            $table->integer('paymentMethodId');
+            $table->decimal('paymentAmount');
+            $table->string('paymentBankAccount');
+            $table->string('paymentBankName');
+            $table->string('paymentCardNumber');
+            $table->string('paymentTransactionNumber');
+            $table->boolean('paymentStatus')->default(true);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -14,7 +14,14 @@ class CreateBuyerInfosTable extends Migration
     public function up()
     {
         Schema::create('buyer_infos', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('buyerId');
+            $table->integer('userId');
+            $table->string('buyerIdentity');
+            $table->string('buyerIdentityImage');
+            $table->string('buyerRTN');
+            $table->string('buyerRTNImage');
+            $table->string('buyerStatus')->default('true'); // Este campo deberia ser boolean
+            $table->softDeletes();
             $table->timestamps();
         });
     }

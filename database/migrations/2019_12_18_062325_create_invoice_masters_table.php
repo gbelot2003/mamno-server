@@ -14,7 +14,27 @@ class CreateInvoiceMastersTable extends Migration
     public function up()
     {
         Schema::create('invoice_masters', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('invoiceId');
+            $table->date('invoiceDate');
+            $table->integer('invoiceClient');
+            $table->integer('invoiceSARConfigId');
+            $table->string('invoiceRTN');
+            $table->string('invoiceCAI');
+            $table->string('invoiceNumber');
+            $table->boolean('invoiceStatus')->default(true); // Cambie este por boolean
+            $table->string('invoiceExemptNumber');
+            $table->decimal('invoiceExemptAmount')->default(0,00);
+            $table->string('invoiceConstancyExeptedRecords');
+            $table->decimal('invoiceExoneratedAmount')->default(0,00);
+            $table->string('invoiceSAGNumber');
+            $table->decimal('invoiceAliquot')->default(0,00);
+            $table->decimal('invoiceTaxedAmount15')->default(0,00);
+            $table->decimal('invoiceTaxedAmount18')->default(0,00);
+            $table->decimal('invoiceSalesTax15')->default(0,00);
+            $table->decimal('invoiceSalesTax18')->default(0,00);
+            $table->decimal('invoiceSubtotal')->default(0,00);
+            $table->decimal('invoiceTotal')->default(0,00);
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -29,3 +49,11 @@ class CreateInvoiceMastersTable extends Migration
         Schema::dropIfExists('invoice_masters');
     }
 }
+
+
+/**
+
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+ */

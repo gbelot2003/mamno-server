@@ -14,7 +14,10 @@ class CreateProducerClassesTable extends Migration
     public function up()
     {
         Schema::create('producer_classes', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('productClassId');
+            $table->string('productClassId');
+            $table->string('productClassImage');
+            $table->boolean('productClassStatus')->default(true); // Cambie esto a bool
             $table->timestamps();
         });
     }

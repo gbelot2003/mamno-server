@@ -14,7 +14,11 @@ class CreateProducerGroupInfosTable extends Migration
     public function up()
     {
         Schema::create('producer_group_infos', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('producerGroupId');
+            $table->string('producerGroupName');
+            $table->text('producerGroupDoc'); // cambie este a text
+            $table->boolean('producerGroupStatus')->default(true);
+            $table->softDeletes();
             $table->timestamps();
         });
     }
