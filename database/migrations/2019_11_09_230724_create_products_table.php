@@ -15,7 +15,7 @@ class CreateProductsTable extends Migration
     public function up()
     {
         Schema::create('products', function (Blueprint $table) {
-            $table->bigIncrements('productId');
+            $table->increments('productId');
             $table->string('productName');
             $table->bigInteger('productClassId')->unsigned();
             $table->bigInteger('productTypeId')->unsigned();
@@ -27,6 +27,19 @@ class CreateProductsTable extends Migration
             $table->foreign('productTypeId')->references('productTypeId')->on('product_types');
             $table->foreign('productQualityId')->references('productQualityId')->on('product_qualities');
         });
+
+        Schema::create('product_prices', function (Blueprint $table) {
+            $table->increments('productPriceId');
+            $table->integer('productId')->unsigned()->index();
+            $table->integer('productMassMeasurementId')->unsigned()->index();
+            $table->integer('productQualityId')->unsigned()->index();
+            $table->float('productLowPrice')->unsigned();
+            $table->float('productAvgPrice')->unsigned();
+            $table->float('productHighPrice')->unsigned();
+            $table->float('productPriceStatus')->unsigned();
+            $table->softDeletes();
+            $table->timestamps();
+        });
     }
 
     /**
@@ -36,6 +49,7 @@ class CreateProductsTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('product_prices');
         Schema::dropIfExists('products');
     }
 }

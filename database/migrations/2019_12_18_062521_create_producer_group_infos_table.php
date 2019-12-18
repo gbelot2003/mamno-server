@@ -17,7 +17,7 @@ class CreateProducerGroupInfosTable extends Migration
             $table->bigIncrements('producerGroupId');
             $table->string('producerGroupName');
             $table->text('producerGroupDoc'); // cambie este a text
-            $table->boolean('producerGroupStatus')->default(true);
+            $table->string('producerGroupStatus')->default(true);
             $table->softDeletes();
             $table->timestamps();
         });

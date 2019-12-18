@@ -15,17 +15,20 @@ class CreateProducerInfosTable extends Migration
     {
         Schema::create('producer_infos', function (Blueprint $table) {
             $table->bigIncrements('producerID');
-            $table->bigInteger('userID')->unsigned()->index();
+            $table->integer('userID')->unsigned()->index();
             $table->string('producerType')->default('Individual');
-            $table->bigInteger('producerGroupId')->unsigned()->index();
+            $table->integer('producerGroupId')->unsigned()->index();
             $table->string('producerIdentity');
             $table->string('producerRTN');
             $table->string('producerAgent');
             $table->text('producerAgentDoc'); // Cambie esto a texto
             $table->string('producerBankAccount'); 
-            $table->boolean('producerStatus')->default(true); // Cambie esto a bool
+            $table->string('producerStatus')->default(true); // Cambie esto a bool
             $table->softDeletes();
             $table->timestamps();
+
+            $table->foreign('producerGroupId')->references('producerGroupId')->on('producer_group_infos'); 
+
         });
     }
 

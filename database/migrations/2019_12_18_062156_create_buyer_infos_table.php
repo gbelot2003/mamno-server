@@ -20,7 +20,7 @@ class CreateBuyerInfosTable extends Migration
             $table->string('buyerIdentityImage');
             $table->string('buyerRTN');
             $table->string('buyerRTNImage');
-            $table->boolean('buyerStatus')->default('true'); // Este campo deberia ser boolean
+            $table->string('buyerStatus')->default('true');
             $table->softDeletes();
             $table->timestamps();
         });
