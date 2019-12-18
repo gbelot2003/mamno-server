@@ -45,3 +45,55 @@ Route::middleware('auth:api')->post('v1/grupos', 'GrupoController@store');
 Route::middleware('auth:api')->get('v1/configuraciones/cancel-access/{id}', 'InitialConfigController@cancelAccess');
 
 Route::middleware('auth:api')->get('v1/auditoria', 'AuditController@index');
+
+/* Product Classes */
+Route::resource('productClasses', 'ProductClasses\ProductClassesController', ['except' => ['create','edit']]);
+
+/* Product Types */
+Route::resource('productTypes', 'ProductTypes\ProductTypesController', ['except' => ['create','edit']]);
+
+/* Product Qualities */
+Route::resource('productQualities', 'ProductQualities\ProductQualitiesController', ['except' => ['create','edit']]);
+
+/* Product Prices */
+Route::resource('productPrices', 'ProductPrices\ProductPricesController', ['except' => ['create','edit']]);
+
+/** No estan estos controladores */
+/* Product Mass Measurements */
+//Route::resource('productMassMeasurements', 'ProductMassMeasurements\ProductMassMeasurementsController', ['except' => ['create','edit']]);
+//Route::resource('conversionMassMeasurements', 'conversionMassMeasurements\conversionMassMeasurementsController', ['except' => ['create','edit']]);
+
+/* Products */
+//Route::resource('products', 'Products\ProductsController', ['except' => ['create','edit']]);
+//Route::resource('productLots', 'productLots\productLotsController', ['except' => ['create','edit']]);
+
+Route::get('errors', 'ErrorController@index');
+Route::get('errors/{id}', 'ErrorController@show');
+Route::post('errors', 'ErrorController@store');
+Route::put('errors/{id}', 'ErrorController@update');
+Route::delete('errors/{id}', 'ErrorController@destroy');
+
+Route::get('logs', 'LogController@index');
+Route::get('logs/{id}', 'LogController@show');
+Route::post('logs', 'LogController@store');
+Route::put('logs/{id}', 'LogController@update');
+Route::delete('logs/{id}', 'LogController@destroy');
+
+Route::get('contents', 'ContentController@index');
+Route::get('contents/{id}', 'ContentController@show');
+Route::post('contents', 'ContentController@store');
+Route::post('contents/uploadFile', 'ContentController@storeFile');
+Route::put('contents/{id}', 'ContentController@update');
+Route::delete('contents/{id}', 'ContentController@destroy');
+
+Route::get('supportTypes', 'SupportTypeController@index');
+Route::get('supportTypes/{id}', 'SupportTypeController@show');
+Route::post('supportTypes', 'SupportTypeController@store');
+Route::put('supportTypes/{id}', 'SupportTypeController@update');
+Route::delete('supportTypes/{id}', 'SupportTypeController@destroy');
+
+Route::get('supports', 'SupportController@index');
+Route::get('supports/{id}', 'SupportController@show');
+Route::post('supports', 'SupportController@store');
+Route::put('supports/{id}', 'SupportController@update');
+Route::delete('supports/{id}', 'SupportController@destroy');

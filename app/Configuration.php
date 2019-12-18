@@ -9,6 +9,7 @@ class Configuration extends Model implements Auditable
 {
 
     use \OwenIt\Auditing\Auditable;
+    
     /**
      * @var array
      */

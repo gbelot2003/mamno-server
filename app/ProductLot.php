@@ -10,10 +10,13 @@ use App\Transformers\ProductLotTransformer;
 use App\Transformers\ProductPriceTransformer;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class ProductLot extends Model
+class ProductLot extends Model implements Auditable
 {
   use SoftDeletes;
+  use \OwenIt\Auditing\Auditable;
+
   public $transformer = ProductLotTransformer::class;
   
   protected $primaryKey='productLotId';
