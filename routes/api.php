@@ -58,13 +58,14 @@ Route::resource('productQualities', 'ProductQualities\ProductQualitiesController
 /* Product Prices */
 Route::resource('productPrices', 'ProductPrices\ProductPricesController', ['except' => ['create','edit']]);
 
+/** No estan estos controladores */
 /* Product Mass Measurements */
-Route::resource('productMassMeasurements', 'ProductMassMeasurements\ProductMassMeasurementsController', ['except' => ['create','edit']]);
-Route::resource('conversionMassMeasurements', 'conversionMassMeasurements\conversionMassMeasurementsController', ['except' => ['create','edit']]);
+//Route::resource('productMassMeasurements', 'ProductMassMeasurements\ProductMassMeasurementsController', ['except' => ['create','edit']]);
+//Route::resource('conversionMassMeasurements', 'conversionMassMeasurements\conversionMassMeasurementsController', ['except' => ['create','edit']]);
 
 /* Products */
-Route::resource('products', 'Products\ProductsController', ['except' => ['create','edit']]);
-Route::resource('productLots', 'productLots\productLotsController', ['except' => ['create','edit']]);
+//Route::resource('products', 'Products\ProductsController', ['except' => ['create','edit']]);
+//Route::resource('productLots', 'productLots\productLotsController', ['except' => ['create','edit']]);
 
 Route::get('errors', 'ErrorController@index');
 Route::get('errors/{id}', 'ErrorController@show');

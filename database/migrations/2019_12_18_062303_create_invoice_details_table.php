@@ -17,6 +17,7 @@ class CreateInvoiceDetailsTable extends Migration
             $table->bigIncrements('invoiceDetailId');
             $table->bigInteger('invoiceId');
             $table->bigInteger('productId');
+            $table->bigInteger('productPriceId');
             $table->decimal('productPrice');
             $table->decimal('productQuantity');
             $table->decimal('productDiscount');

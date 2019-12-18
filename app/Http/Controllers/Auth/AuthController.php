@@ -58,10 +58,9 @@ class AuthController extends AccessTokenController
             event(new BlockAttempsUsers($request));
         }
 
-        // necesitamos que $checkStatus tenga valor
+        //TODO: necesitamos que $checkStatus tenga valor
         $checkStatus = User::where('email', $request->email)->first();
 
-        if ()
 
         if ($checkStatus->status == false) {
             return \response()->json('La Cuenta esta bloqueada, solicite procedimiento de desbloqueo al administrador del sistema', 401);

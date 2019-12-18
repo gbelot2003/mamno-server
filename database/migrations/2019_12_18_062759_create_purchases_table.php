@@ -14,7 +14,10 @@ class CreatePurchasesTable extends Migration
     public function up()
     {
         Schema::create('purchases', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('purchaseId');
+            $table->bigInteger('buyerId')->unsigned()->index();
+            $table->bigInteger('sellerId')->unsigned()->index();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

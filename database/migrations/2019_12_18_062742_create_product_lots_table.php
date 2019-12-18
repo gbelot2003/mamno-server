@@ -14,7 +14,21 @@ class CreateProductLotsTable extends Migration
     public function up()
     {
         Schema::create('product_lots', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('productLotId');
+            $table->bigInteger('productLotProductorId')->default(1);
+            $table->bigInteger('productPriceId')->default(1);
+            $table->float('productLotQuantityInventory')->unsigned();
+            $table->float('productLotQuantity')->unsigned();
+            $table->date('productLotAvailableDate');
+            $table->date('productLotExpirationDate');
+            $table->string('productLotCultivatedArea');
+            $table->string('productLotCultivatedAreaAddress');
+            $table->float('productLotCultivatedPerformance');
+            $table->string('productLotProductionMode');
+            $table->string('productLotSaleType');
+            $table->float('productLotSalePrice');
+            $table->text('productLotPickupAddress');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
