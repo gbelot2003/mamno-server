@@ -28,18 +28,7 @@ class CreateProductsTable extends Migration
             $table->foreign('productQualityId')->references('productQualityId')->on('product_qualities');
         });
 
-        Schema::create('product_prices', function (Blueprint $table) {
-            $table->increments('productPriceId');
-            $table->integer('productId')->unsigned()->index();
-            $table->integer('productMassMeasurementId')->unsigned()->index();
-            $table->integer('productQualityId')->unsigned()->index();
-            $table->float('productLowPrice')->unsigned();
-            $table->float('productAvgPrice')->unsigned();
-            $table->float('productHighPrice')->unsigned();
-            $table->float('productPriceStatus')->unsigned();
-            $table->softDeletes();
-            $table->timestamps();
-        });
+
     }
 
     /**
@@ -49,7 +38,6 @@ class CreateProductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_prices');
         Schema::dropIfExists('products');
     }
 }
