@@ -63,15 +63,15 @@ class CreateInvoiceDetailsTable extends Migration
             $table->date('invoiceDate');
             $table->integer('invoiceClient');
             $table->integer('invoiceSARConfigId');
-            $table->string('invoiceRTN');
-            $table->string('invoiceCAI');
+            $table->string('invoiceRTN')->nullable();
+            $table->string('invoiceCAI')->nullable();
             $table->string('invoiceNumber');
             $table->boolean('invoiceStatus')->default(true); // Cambie este por boolean
-            $table->string('invoiceExemptNumber');
+            $table->string('invoiceExemptNumber')->nullable();
             $table->decimal('invoiceExemptAmount')->default(0,00);
-            $table->string('invoiceConstancyExeptedRecords');
+            $table->string('invoiceConstancyExeptedRecords')->nullable();
             $table->decimal('invoiceExoneratedAmount')->default(0,00);
-            $table->string('invoiceSAGNumber');
+            $table->string('invoiceSAGNumber')->nullable();
             $table->decimal('invoiceAliquot')->default(0,00);
             $table->decimal('invoiceTaxedAmount15')->default(0,00);
             $table->decimal('invoiceTaxedAmount18')->default(0,00);
@@ -93,6 +93,7 @@ class CreateInvoiceDetailsTable extends Migration
             $table->decimal('productDiscount');
             $table->decimal('productTotal');
             $table->string('detailStatus')->default(true);
+            $table->softDeletes();
             $table->timestamps();
 
             $table->foreign('invoiceId')->references('invoiceId')->on('invoice_masters'); 
